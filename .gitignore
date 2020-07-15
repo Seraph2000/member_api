@@ -1,0 +1,8 @@
+# files
+*.txt
+
+# directories
+__pycache__/
+ venv/
+
+
