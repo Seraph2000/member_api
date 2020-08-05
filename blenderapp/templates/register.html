@@ -1,0 +1,129 @@
+<html>
+
+    <head>
+        <title>TalentBlender</title>
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('community') }}">Community <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('profile') }}">Profile <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('register') }}">Register <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <br><br><br>
+            {% if not_registered %}
+            <form class="container" method="POST" action="{{ url_for('register') }}">
+                <!-- <fieldset> -->
+                <h1>Register for an account</h1>
+                <br><br>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="usertype" id="talent" value="talent" checked>
+                        <label class="form-check-label" for="talent">
+                            Talent
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="usertype" id="client" value="client">
+                        <label class="form-check-label" for="client">
+                            Client
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                </div>
+                <!-- </fieldset> -->
+                
+            </form>
+            {% else %}
+            <h3>Please Complete Your Profile Below...</h3>
+            <form class="container" method="POST" action="{{ url_for('profile', username=username) }}">
+                <br><br>
+                <div class="form-group row">
+                    <label for="profession" class="col-sm-2 col-form-label">Profession</label>
+                    <div class="col-sm-10">
+                        <!-- error handling -->
+                        <input type="text" class="form-control" name="profession">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="years" class="col-sm-2 col-form-label">Years Experience</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="years">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="firstname">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="lastname">
+                    </div>
+                </div>
+                
+                
+                <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Create Your Profile</button>
+                </div>
+                </div>
+                <!-- </fieldset> -->
+                
+            </form>
+            {% endif %}
+        
+    </body>
+</html>
